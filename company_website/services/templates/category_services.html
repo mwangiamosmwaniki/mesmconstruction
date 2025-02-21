@@ -1,0 +1,19 @@
+<!-- templates/services/category_services.html -->
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>Services in {{ category.name }}</h1>
+
+<div class="services">
+    {% for service in services %}
+        <div class="service">
+            <img src="{{ service.image.url }}" alt="{{ service.name }}">
+            <h3>{{ service.name }}</h3>
+            <p>{{ service.description }}</p>
+        </div>
+    {% empty %}
+        <p>No services available for this category.</p>
+    {% endfor %}
+</div>
+
+{% endblock %}

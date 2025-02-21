@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MESM Company Ltd</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <style>
+        /* Contact Us Section */
+        .contact-us {
+            background: #4b4646;
+            padding: 40px;
+            text-align: center;
+            border-top: 4px solid #333;
+            color: white;
+        }
+
+        .contact-info {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+
+        .contact-item {
+            text-align: center;
+            padding: 15px;
+            background: #333;
+            border-radius: 5px;
+            width: 250px;
+        }
+
+        .contact-item i {
+            font-size: 24px;
+            color: #ffcc00;
+            margin-bottom: 10px;
+        }
+
+        .contact-item p, .contact-item a {
+            font-size: 16px;
+            color: white;
+            text-decoration: none;
+        }
+
+        /* Success Message */
+        .alert {
+            position: fixed;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: #28a745;
+            color: white;
+            padding: 15px 20px;
+            text-align: center;
+            border-radius: 5px;
+            font-size: 18px;
+            font-weight: bold;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+            z-index: 1000;
+            display: none;
+        }
+
+        /* Contact Form */
+        form {
+            max-width: 500px;
+            margin: auto;
+            background: #333;
+            padding: 20px;
+            border-radius: 10px;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+            text-align: left;
+        }
+
+        input, textarea {
+            width: 100%;
+            padding: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        button {
+            background-color: #ffcc00;
+            color: black;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            width: 100%;
+        }
+
+        button:hover {
+            background-color: #ff9900;
+        }
+
+        /* Google Map */
+        .map-container {
+            width: 100%;
+            max-width: 600px;
+            margin: auto;
+            margin-top: 20px;
+        }
+
+        iframe {
+            width: 100%;
+            height: 300px;
+            border: none;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header Section -->
+    <header>
+        <img src="/static/images/mesm.png" alt="Company Logo" class="logo">
+        <nav>
+            <ul>
+                <li><a href="{% url 'home' %}">Home</a></li>
+                <li><a href="{% url 'cyber_services' %}">Cyber Services</a></li>
+                <li><a href="{% url 'entertainment' %}">Entertainment</a></li>
+                <li><a href="{% url 'graphics_design' %}">Graphics Design</a></li>
+                <li><a href="{% url 'construction' %}">Construction</a></li>
+                <li><a href="{% url 'contact' %}">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+    
+    <!-- Main Content Block -->
+    <div class="content">
+        {% block content %}
+        {% endblock %}
+    </div>
+
+    <!-- Testimonials Section -->
+    <section class="testimonials">
+        <h2>What Others Say About Us</h2>
+        <div class="reviews">
+            {% for review in reviews %}
+                <div class="review-item">
+                    <p>"{{ review.comment }}"</p>
+                    <p><strong>- {{ review.name }}</strong></p>
+                </div>
+            {% empty %}
+                <p>No reviews yet. Be the first to share your experience!</p>
+            {% endfor %}
+        </div>
+        
+        <!-- Review Form -->
+        <h3>Share Your Thoughts</h3>
+        <form action="{% url 'add_review' %}" method="post">
+            {% csrf_token %}
+            <label for="name">Your Name:</label>
+            <input type="text" id="name" name="name" required>
+
+            <label for="comment">Your Review:</label>
+            <textarea id="comment" name="comment" rows="4" required></textarea>
+
+            <button type="submit">Submit Review</button>
+        </form>
+    </section>
+
+    <!-- Contact Us Section -->
+    <section class="contact-us">
+        <h2>Contact Us</h2>
+        
+        <div class="contact-info">
+            <div class="contact-item">
+                <i class="fab fa-whatsapp"></i>
+                <p><strong>WhatsApp:</strong> 
+                    <a href="https://wa.me/{{ contact_info.whatsapp }}" target="_blank">
+                        {{ contact_info.whatsapp }}
+                    </a>
+                </p>
+            </div>
+            <div class="contact-item">
+                <i class="fas fa-envelope"></i>
+                <p><strong>Email:</strong> 
+                    <a href="mailto:{{ contact_info.email }}">{{ contact_info.email }}</a>
+                </p>
+            </div>
+            <div class="contact-item">
+                <i class="fas fa-phone"></i>
+                <p><strong>Phone:</strong> 
+                    <a href="tel:{{ contact_info.phone }}">{{ contact_info.phone }}</a>
+                </p>
+            </div>
+        </div>
+
+        <!-- Google Maps -->
+        <div class="map-container">
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3988.920248881
+            7878!2d36.91767914102169!3d-1.2156950956178725!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!
+            1s0x182f3fd80f8da691%3A0x1228d571c32cb5f1!2sACK%20St.%20Timothy%20Parish%20Githurai45!5e0!3m2!1s
+            en!2ske!4v1740149253389!5m2!1sen!2ske" width="600" height="450" style="border:0;" allowfullscreen="" 
+            loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </div>
+
+
+        <!-- Contact Form -->
+        <h3>Send Us a Message</h3>
+
+        <!-- Success/Error Message -->
+        <div id="message-response" class="alert" style="display: none; width: 50%;"></div>
+
+        <form id="contact-form">
+            {% csrf_token %}
+            
+            <div class="form-group">
+                <label for="name">Your Name:</label>
+                <input type="text" id="name" name="name" required>
+            </div>
+
+            <div class="form-group">
+                <label for="email">Your Email:</label>
+                <input type="email" id="email" name="email" required>
+            </div>
+
+            <div class="form-group">
+                <label for="message">Your Message:</label>
+                <textarea id="message" name="message" rows="4" required></textarea>
+            </div>
+
+            <button type="submit">Send Message</button>
+        </form>
+
+        <!-- AJAX Script -->
+        <script>
+            document.getElementById("contact-form").addEventListener("submit", function(event) {
+                event.preventDefault(); // Prevent default form submission
+            
+                var formData = new FormData(this); // Get form data
+                var responseDiv = document.getElementById("message-response");
+                var submitButton = this.querySelector("button");
+            
+                // Get CSRF token from the form
+                var csrfToken = document.querySelector('[name=csrfmiddlewaretoken]').value;
+            
+                // Disable button to prevent duplicate submissions
+                submitButton.disabled = true;
+            
+                fetch("{% url 'home' %}", {
+                    method: "POST",
+                    body: formData,
+                    headers: {
+                        "X-CSRFToken": csrfToken
+                    }
+                })
+                .then(response => response.json())
+                .then(data => {
+                    responseDiv.style.display = "block";
+                    responseDiv.textContent = data.message;
+                    responseDiv.style.backgroundColor = data.success ? "#28a745" : "#dc3545";
+            
+                    if (data.success) {
+                        document.getElementById("contact-form").reset(); // Clear form on success
+            
+                        // Hide message after 2 seconds
+                        setTimeout(function() {
+                            responseDiv.style.display = "none";
+                            submitButton.disabled = false; // Re-enable button after hiding message
+                        }, 2000);
+                    } else {
+                        submitButton.disabled = false; // Re-enable button on error
+                    }
+                })
+                .catch(error => {
+                    console.error("Error:", error);
+                    submitButton.disabled = false; // Re-enable button if an error occurs
+                });
+            });
+            </script>
+            
+
+
+    </section>
+
+    <!-- Footer Section -->
+    <footer>
+        <p>&copy; 2025 MESM Company Ltd. All Rights Reserved.</p>
+        <p>Follow us on 
+            <a href="#">Instagram</a> | 
+            <a href="#">Twitter</a> | 
+            <a href="#">LinkedIn</a> | 
+            <a href="#">TikTok</a>
+        </p>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,18 @@
+<!-- templates/services/service_categories.html -->
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>Our Service Categories</h1>
+
+<div class="categories">
+    {% for category in categories %}
+        <div class="category">
+            <img src="{{ category.image.url }}" alt="{{ category.name }}">
+            <h2><a href="{% url 'category_services' category.id %}">{{ category.name }}</a></h2>
+        </div>
+    {% empty %}
+        <p>No categories available at the moment.</p>
+    {% endfor %}
+</div>
+
+{% endblock %}

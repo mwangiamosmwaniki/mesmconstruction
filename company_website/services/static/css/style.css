@@ -1,0 +1,302 @@
+/* General Body Styling */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background: url('/static/images/background.jpg') no-repeat center center fixed;
+    background-size: cover;
+    color: white;
+}
+h1{
+    color: #00aeff;
+    margin-top: 5px;
+}
+h2{color: rgb(0, 250, 12);
+    text-decoration: underline 3px white;
+}
+p{
+    color: white;
+}
+
+/* Header Styling */
+header {
+    text-align: center;
+    padding: 15px;
+    background: rgba(0, 0, 0, 0.7); /* Semi-transparent black */
+}
+
+.logo {
+    width: 150px;
+    margin-bottom: 1px;
+}
+
+/* Navigation Bar Styling */
+nav ul {
+    display: flex;
+    list-style: none;
+    justify-content: center;
+    background: rgba(0, 0, 0, 0.7);
+    padding: 10px;
+}
+
+nav ul li {
+    margin: 0 20px;
+}
+
+nav ul li a {
+    color: white;
+    text-decoration: none;
+    font-size: 18px;
+    padding: 10px 15px;
+    transition: background 0.3s;
+}
+
+nav ul li a:hover {
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 5px;
+}
+
+/* Content Area */
+.content {
+    padding: 20px;
+    background: rgba(0, 0, 0, 0.7); /* Slight transparent background for content */
+}
+
+.gallery {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding: 20px;
+}
+
+.gallery-item {
+    margin: 15px;
+    text-align: center;
+    max-width: 300px;
+}
+
+.gallery-item img {
+    height: 400px;
+    width: 100%;
+    border-radius: 5px;
+}
+
+.gallery-item ul li{
+    list-style: none;
+}
+.gallery-item p {
+    color: rgb(248, 248, 248);
+    font-size: 16px;
+}
+.gallery-item h2{
+    color: #ff9900;
+}
+
+.sample_image{
+    width: 350px;
+    height: 350px;
+}
+
+/* Footer Styling */
+footer {
+    text-align: center;
+    background: rgba(27, 25, 25, 0.7);
+    padding: 20px;
+    position: relative;
+    bottom: 0;
+    /*width: 100%;*/
+}
+
+footer a{
+    color: rgb(0, 255, 13);
+}
+footer a:hover{
+    color: red;
+}
+
+footer p {
+    margin: 5px 0;
+}
+
+/* Testimonials Section */
+.testimonials {
+    margin-top: 50px;
+    padding: 40px;
+    background: rgba(0, 0, 0, 0.8); /* Darker background for the testimonial section */
+    text-align: center;
+}
+
+.testimonials h2 {
+    font-size: 36px;
+    margin-bottom: 20px;
+    color: #ffcc00; /* Highlight color */
+}
+
+.reviews {
+    margin-top: 20px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 20px;
+    padding: 10px;
+}
+
+.review-item {
+    background-color: rgba(255, 255, 255, 0.1);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.review-item p {
+    font-style: italic;
+    color: #ccc;
+}
+
+.review-item strong {
+    font-size: 16px;
+    color: #ffcc00; /* Highlight name color */
+}
+
+/* Review Form Styling */
+form {
+    
+    padding: 20px;
+    border-radius: 10px;
+    margin-top: 30px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+form label {
+    display: block;
+    margin-bottom: 10px;
+    font-size: 16px;
+}
+
+form input, form textarea {
+    width: 90%;
+    padding: 12px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: rgba(255, 255, 255, 0.2);
+
+}
+
+form input:focus, form textarea:focus {
+    border-color: #ffcc00;
+    outline: none;
+}
+
+form button {
+    padding: 12px 20px;
+    background-color: #ffcc00;
+    color: black;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+}
+
+form button:hover {
+    background-color: #75603f;
+}
+
+/* Responsive Layout for Testimonials */
+@media screen and (max-width: 768px) {
+    .reviews {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .reviews {
+        grid-template-columns: 1fr;
+    }
+    
+    nav ul {
+        flex-direction: column;
+    }
+}
+
+.services-list {
+    display: flex;
+    flex-wrap: wrap; /* Allows items to wrap onto multiple lines */
+    justify-content: space-around; /* Distributes items evenly */
+}
+
+.service-item {
+    width: 30%; /* Adjust as needed for desired number of columns */
+    margin-bottom: 20px;
+    border: 1px solid #ccc; /* Optional border */
+    padding: 10px;
+    box-sizing: border-box; /* Ensures padding doesn't affect width */
+    text-align: center; /* Center the content */
+}
+
+.service-image {
+    max-width: 100%; /* Prevents images from overflowing */
+    height: auto;
+    margin-bottom: 10px;
+}
+
+.sample_image { /* Style for your existing image */
+    max-width: 50%; /* Or whatever size you want */
+    height: auto;
+    display: block; /* Makes it a block element, so it takes up its own line */
+    margin: 10px auto; /* Centers the image */
+}
+.service-item h3{
+    color: #08fff3;
+}
+
+.contact-us {
+    background: #e01c1c;
+    padding: 40px;
+    text-align: center;
+    border-top: 4px solid #333;
+}
+
+.contact-info {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    margin-bottom: 20px;
+    background: #333;
+}
+
+.contact-item {
+    text-align: center;
+}
+
+.contact-item i {
+    font-size: 24px;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.contact-item p {
+    font-size: 16px;
+    margin: 0;
+}
+
+form {
+    max-width: 500px;
+    margin: auto;
+}
+
+.form-group {
+    background: #333;
+    margin-bottom: 15px;
+    text-align: left;
+}
+
+input, textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+
+

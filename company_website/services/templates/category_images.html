@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>{{ category.name }}</h1>
+
+<div class="services">
+    {% for service in services %}
+        <div class="service">
+            <img src="{{ service.image.url }}" alt="{{ service.name }}">
+            <h3>{{ service.name }}</h3>
+            <p>{{ service.description }}</p>
+        </div>
+    {% empty %}
+        <p>No services available under {{ category.name }}.</p>
+    {% endfor %}
+</div>
+
+<div class="site-images">
+    <h2>Gallery</h2>
+    {% for image in images %}
+        <div class="image-item">
+            <img src="{{ image.image.url }}" alt="{{ image.description }}">
+            <p>{{ image.description }}</p>
+        </div>
+    {% empty %}
+        <p>No images available for {{ category.name }}.</p>
+    {% endfor %}
+</div>
+
+{% endblock %}
